@@ -15,7 +15,7 @@ This repository contains the implementation of a Dashboard application. The proj
 
 - **Responsive Design**: Adapts dynamically to mobile screens by switching to a column view. The **usehooks-ts** library is used for handling responsive behavior.
 
-- **Maximize Controller**: An additional toolbar control that maximizes the selected panel to full screen by modifying the mosaic layout. The **lucide-react** library is used for the corresponding icon.
+- **Maximize Controller**: An additional toolbar control that maximizes the selected panel to full screen by modifying the mosaic layout.
 
 
 ## How to Run the Application
