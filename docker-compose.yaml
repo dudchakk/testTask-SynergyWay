@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build: 
+      dockerfile: ./docker/frontend/Dockerfile
+    ports:
+      - "80:80"
+
+  fake-api:
+    build: 
+      dockerfile: ./docker/fake-api/Dockerfile
+    ports:
+      - "5000:5000"

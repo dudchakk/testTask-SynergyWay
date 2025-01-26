@@ -18,7 +18,7 @@ This repository contains the implementation of a Dashboard application. The proj
 - **Maximize Controller**: An additional toolbar control that maximizes the selected panel to full screen by modifying the mosaic layout.
 
 
-## How to Run the Application
+## How to Run the Application (Locally)
 
 1. **Clone this project to your local machine:**  
 
@@ -35,18 +35,32 @@ This repository contains the implementation of a Dashboard application. The proj
    ```bash
    npm i -g json-server
    ```
-3. **Start the Json Server:**  
+4. **Start the Json Server:**  
 
    ```bash
    json-server --watch companies-lookup.json --port 5000
    ```
-3. **Run the project in a separate terminal:**  
+5. **Run the project in a separate terminal:**  
 
    ```bash
    npm run dev
    ```
+6. Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
 
-Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+
+## How to Run the Application (with Docker)
+
+1. **Download and install Docker Desktop (if not already installed):**  
+  Visit the [Docker Desktop website](https://www.docker.com/products/docker-desktop/) and follow the installation instructions.
+
+2. **Launch Docker Desktop:**  
+  Open the Docker Desktop application to ensure it is running.
+
+3. **Start the project using Docker Compose:**  
+  ```bash
+  docker compose up --build
+  ```
+4. Open [http://localhost:80](http://localhost:80) to view the application.
 
 
 ## Technologies used
@@ -55,3 +69,4 @@ Open [http://localhost:5173](http://localhost:5173) with your browser to see the
 - **React Mosaic**: Used for creating and managing dynamic dashboard panels.
 - **Tailwind CSS**: For responsive and modern UI styling.
 - **TypeScript**: Type validation.
+- **Docker**: Enables containerization.
