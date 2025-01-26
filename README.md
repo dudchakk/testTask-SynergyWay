@@ -1,50 +1,57 @@
-# React + TypeScript + Vite
+# Test Task - Dahboard Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the implementation of a Dashboard application. The project is built using **React Mosaic** and demonstrates three widgets with information about companies, fetched from **Fake API**.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Homepage**: Displays three Company Info widgets using [React Mosaic](https://github.com/nomcopter/react-mosaic) in a layout as specified in the task.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Company Info Widget**: A component that fetches and displays data for a specific company.
 
-- Configure the top-level `parserOptions` property like this:
+- **Fake API**: Utilizes Json Server running on port 5000 with the `companies-lookup.json` file provided in the task.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Ticker Dropdown**: A dropdown menu in each panel that lists company tickers, allowing users to select which company's information to display. By default, companies are displayed based on the panel index.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Responsive Design**: Adapts dynamically to mobile screens by switching to a column view. The **usehooks-ts** library is used for handling responsive behavior.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **Maximize Controller**: An additional toolbar control that maximizes the selected panel to full screen by modifying the mosaic layout. The **lucide-react** library is used for the corresponding icon.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+## How to Run the Application
+
+1. **Clone this project to your local machine:**  
+
+   ```bash
+   git clone https://github.com/dudchakk/testTask-SynergyWay.git
+   ```
+2. **Install the required project dependencies:**  
+
+   ```bash
+   npm install
+   ```
+3. **Install Json Server globally:**  
+
+   ```bash
+   npm i -g json-server
+   ```
+3. **Start the Json Server:**  
+
+   ```bash
+   json-server --watch companies-lookup.json --port 5000
+   ```
+3. **Run the project in a separate terminal:**  
+
+   ```bash
+   npm run dev
+   ```
+
+Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+
+
+## Technologies used
+
+- **React**: The core framework for building the application.
+- **React Mosaic**: Used for creating and managing dynamic dashboard panels.
+- **Tailwind CSS**: For responsive and modern UI styling.
+- **TypeScript**: Type validation.
