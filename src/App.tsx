@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Mosaic, MosaicWindow, MosaicNode } from 'react-mosaic-component';
 import 'react-mosaic-component/react-mosaic-component.css';
 
-import CompanyInfoWidget from './components/CompanyInfoWidget';
+import { useMediaQuery } from 'usehooks-ts';
 import { Maximize2 } from 'lucide-react';
-
+import CompanyInfoWidget from './components/CompanyInfoWidget';
 
 function App() {
-  const initialLayout: MosaicNode<string> = {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  const desktopLayout: MosaicNode<string> = {
     direction: 'row',
     first: '0',
     second: {
@@ -18,7 +20,22 @@ function App() {
     splitPercentage: 35,
   };
 
-  const [layout, setLayout] = useState<MosaicNode<string>>(initialLayout);
+  const mobileLayout: MosaicNode<string> = {
+    direction: 'column',
+    first: '0',
+    second: {
+      direction: 'column',
+      first: '1',
+      second: '2',
+    },
+    splitPercentage: 33,
+  };
+
+  const [layout, setLayout] = useState<MosaicNode<string>>(desktopLayout);
+
+  useEffect(() => {
+    setLayout(isMobile ? mobileLayout : desktopLayout);
+  }, [isMobile]);
 
   const handleMaximize = (id: string) => {
     setLayout(id);
