@@ -24,5 +24,5 @@ export const mobileLayout: MosaicNode<string> = {
 }
 
 export const companyNamesMapped = companies.map((company, index) => {
-  return { name: company.name, index: index }
+  return { name: company.ticker, index: index }
 })
