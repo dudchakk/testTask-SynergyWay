@@ -15,7 +15,9 @@ function App() {
   >({})
 
   useEffect(() => {
-    setLayout(isMobile ? mobileLayout : desktopLayout)
+    if (typeof layout !== 'string') {
+      setLayout(isMobile ? mobileLayout : desktopLayout)
+    }
   }, [isMobile])
 
   const handleMaximize = (id: string) => {
@@ -25,7 +27,7 @@ function App() {
   const createToolbarControls = (id: string) => [
     <select
       key='dropdown'
-      className="text-sm text-gray-600 p-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-gray-400 w-32 mr-2"
+      className='text-sm text-gray-600 p-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-gray-400 w-32 mr-2'
       value={selectedCompanies[id] ?? Number(id)}
       onChange={(e) =>
         setSelectedCompanies((prev) => ({
