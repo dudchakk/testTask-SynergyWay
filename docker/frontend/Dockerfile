@@ -13,8 +13,6 @@ COPY ../public ./public/
 COPY ../src ./src/
 COPY ../index.html ./
 
-COPY ../companies-lookup.json ./
-
 RUN npm run build
 
 FROM nginx:1.22.1
