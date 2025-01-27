@@ -5,20 +5,39 @@ import 'react-mosaic-component/react-mosaic-component.css'
 import { useMediaQuery } from 'usehooks-ts'
 import { Maximize2 } from 'lucide-react'
 import CompanyInfoWidget from './components/CompanyInfoWidget'
-import { desktopLayout, mobileLayout, companyNamesMapped } from './constants'
+import {
+  desktopLayout,
+  mobileLayout,
+  initialSelectedCompanies,
+} from './constants'
+import { CompanyInfo, CompanyTickers, SelectedCompanies } from './types'
 
 function App() {
   const [layout, setLayout] = useState<MosaicNode<string>>(desktopLayout)
   const isMobile = useMediaQuery('(max-width: 768px)')
-  const [selectedCompanies, setSelectedCompanies] = useState<
-    Record<string, number>
-  >({})
+  const [companyTickers, setCompanyTickers] = useState<CompanyTickers>([])
+  const [selectedCompanies, setSelectedCompanies] = useState<SelectedCompanies>(
+    initialSelectedCompanies
+  )
 
   useEffect(() => {
     if (typeof layout !== 'string') {
       setLayout(isMobile ? mobileLayout : desktopLayout)
     }
   }, [isMobile])
+
+  useEffect(() => {
+    const fetchCompanies = async () => {
+      const response = await fetch(`http://localhost:5000/companies`)
+      const data = await response.json()
+      setCompanyTickers(
+        data.map((company: CompanyInfo) => {
+          return { ticker: company.ticker, id: company.id }
+        })
+      )
+    }
+    fetchCompanies()
+  }, [])
 
   const handleMaximize = (id: string) => {
     setLayout(id)
@@ -28,21 +47,21 @@ function App() {
     <select
       key='dropdown'
       className='text-sm text-gray-600 my-0.5 px-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-gray-400 mr-2'
-      value={selectedCompanies[id] ?? Number(id)}
+      value={selectedCompanies[id]}
       onChange={(e) =>
         setSelectedCompanies((prev) => ({
           ...prev,
-          [id]: Number(e.target.value),
+          [id]: e.target.value,
         }))
       }
     >
-      {companyNamesMapped.map((company) => (
+      {companyTickers.map((company) => (
         <option
-          key={company.index}
-          value={company.index}
+          key={company.id}
+          value={company.id}
           className='whitespace-normal'
         >
-          {company.name}
+          {company.ticker}
         </option>
       ))}
     </select>,
@@ -65,13 +84,7 @@ function App() {
             title='Company Info'
             toolbarControls={createToolbarControls(id)}
           >
-            <CompanyInfoWidget
-              companyId={
-                selectedCompanies[id] !== undefined
-                  ? selectedCompanies[id]
-                  : Number(id)
-              }
-            />
+            <CompanyInfoWidget companyId={selectedCompanies[id]} />
           </MosaicWindow>
         )}
         value={layout}

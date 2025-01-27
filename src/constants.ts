@@ -1,5 +1,4 @@
 import { MosaicNode } from 'react-mosaic-component'
-import companies from '../companies-lookup.json'
 
 export const desktopLayout: MosaicNode<string> = {
   direction: 'row',
@@ -23,6 +22,8 @@ export const mobileLayout: MosaicNode<string> = {
   splitPercentage: 33,
 }
 
-export const companyNamesMapped = companies.map((company, index) => {
-  return { name: company.ticker, index: index }
-})
+export const initialSelectedCompanies = {
+  '0': 'com_NX6GzO',
+  '1': 'com_agj00z',
+  '2': 'com_0XLDdX',
+}
