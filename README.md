@@ -9,9 +9,9 @@ This repository contains the implementation of a Dashboard application. The proj
 
 - **Company Info Widget**: A component that fetches and displays data for a specific company.
 
-- **Fake API**: Utilizes Json Server running on port 5000 with the `companies-lookup.json` file provided in the task.
+- **Fake API**: Uses Json Server running on port 5000 with the `companies-lookup.json` file. The file is updated to include the `/companies` endpoint for fetching all companies.
 
-- **Ticker Dropdown**: A dropdown menu in each panel that lists company tickers, allowing users to select which company's information to display. By default, companies are displayed based on the panel index.
+- **Ticker Dropdown**: A dropdown menu in each panel that enables selecting a company by its ticker. The list of tickers is fetched from the `/companies` endpoint. The first three companies are shown by default.
 
 - **Responsive Design**: Adapts dynamically to mobile screens by switching to a column view. The **usehooks-ts** library is used for handling responsive behavior.
 
